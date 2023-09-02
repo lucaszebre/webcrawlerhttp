@@ -1,29 +1,29 @@
-const {normalizeUrl,getUrlsFromHTML} = require('./crawl')
+const {normalizeURL,getURLsFromHTML} = require('./crawl')
 const {test,expect} = require('@jest/globals')
 test('normalizeUrl strip protocol',()=>{
     const input='https://blog.boot.dev/path'
-    const actual = normalizeUrl(input)
+    const actual = normalizeURL(input)
     const expected = 'blog.boot.dev/path'
     expect(actual).toEqual(expected)
 })
 
 test('normalizeUrl strip trailling shlash ',()=>{
     const input='https://blog.boot.dev/path/'
-    const actual = normalizeUrl(input)
+    const actual = normalizeURL(input)
     const expected = 'blog.boot.dev/path'
     expect(actual).toEqual(expected)
 })
 
 test('normalizeUrl capital ',()=>{
     const input='https://BlOG.boot.dev/path/'
-    const actual = normalizeUrl(input)
+    const actual = normalizeURL(input)
     const expected = 'blog.boot.dev/path'
     expect(actual).toEqual(expected)
 })
 
 test('normalizeUrl strip http ',()=>{
     const input='http://blog.boot.dev/path/'
-    const actual = normalizeUrl(input)
+    const actual = normalizeURL(input)
     const expected = 'blog.boot.dev/path'
     expect(actual).toEqual(expected)
 })
@@ -39,7 +39,7 @@ test('getUrlsFromHttps absolute url ',()=>{
     </html>
     `
     const inputBaseURL = "http://blog.boot.dev/path/"
-    const actual = getUrlsFromHTML(inputHTMLBody,inputBaseURL)
+    const actual = getURLsFromHTML(inputHTMLBody,inputBaseURL)
     const expected = ["http://blog.boot.dev/path/"]
     expect(actual).toEqual(expected)
 })
@@ -54,7 +54,7 @@ test('getUrlsFromHttps relative url ',()=>{
     </html>
     `
     const inputBaseURL = "http://blog.boot.dev"
-    const actual = getUrlsFromHTML(inputHTMLBody,inputBaseURL)
+    const actual = getURLsFromHTML(inputHTMLBody,inputBaseURL)
     const expected = ["http://blog.boot.dev/path/"]
     expect(actual).toEqual(expected)
 })
@@ -73,7 +73,7 @@ test('getUrlsFromHttps mutiple url both ',()=>{
     </html>
     `
     const inputBaseURL = "http://blog.boot.dev"
-    const actual = getUrlsFromHTML(inputHTMLBody,inputBaseURL)
+    const actual = getURLsFromHTML(inputHTMLBody,inputBaseURL)
     const expected = ["http://blog.boot.dev/path1/","http://blog.boot.dev/path2/"]
     expect(actual).toEqual(expected)
 })
@@ -90,7 +90,7 @@ test('getUrlsFromHttps invalid Url ',()=>{
     </html>
     `
     const inputBaseURL = "http://blog.boot.dev"
-    const actual = getUrlsFromHTML(inputHTMLBody,inputBaseURL)
+    const actual = getURLsFromHTML(inputHTMLBody,inputBaseURL)
     const expected = []
     expect(actual).toEqual(expected)
 })
