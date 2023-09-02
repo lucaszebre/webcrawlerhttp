@@ -8,11 +8,22 @@ function getUrlsFromHTML(htmlBody,baseURL){
     for (const link of linkElement){
         if (link.href.slice(0,1)=== '/'){
             // relative url 
-            urls.push(`${baseURL}${link.href}`)
+            try {
+                const urlObj = new URL(`${baseURL}${link.href}`)
+                urls.push(urlObj.href)
+            } catch (error) {
+                console.log(`there is error ${error.message}`)
+            }
+            
         }
         else{
             // absolute url 
-            urls.push(link.href)
+            try {
+                const urlObj = new URL(link.href)
+                urls.push(urlObj.href)
+            } catch (error) {
+                console.log(`there is error ${error.message}`)
+            }
             
         }
         

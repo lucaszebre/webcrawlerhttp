@@ -78,4 +78,21 @@ test('getUrlsFromHttps mutiple url both ',()=>{
     expect(actual).toEqual(expected)
 })
 
+test('getUrlsFromHttps invalid Url ',()=>{
+    const inputHTMLBody=
+    `<html> 
+        <body> 
+            <a href="invalid">
+            Boot.dev Blog
+            </a>
+            
+        </body>
+    </html>
+    `
+    const inputBaseURL = "http://blog.boot.dev"
+    const actual = getUrlsFromHTML(inputHTMLBody,inputBaseURL)
+    const expected = []
+    expect(actual).toEqual(expected)
+})
+
 
