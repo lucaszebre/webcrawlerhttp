@@ -25,5 +25,6 @@ function sortPages(pages){
 
 
 module.exports = {
+    printReport,
     sortPages
 }
